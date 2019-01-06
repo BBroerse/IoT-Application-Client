@@ -2,7 +2,7 @@
   <v-container grid-list-md text-xs-center>
     <v-layout class="current-values" row wrap justify-space-around>
       <v-flex md2 v-for="(type, i) in types" :key="i" :if="type.statistics">
-        <statistics-card :title="type.displayText" :value="currentMeasurements[type.attribute]" />
+        <statistics-card :title="type.displayText" :value="type.displayValue(currentMeasurements[type.attribute])" />
       </v-flex>
     </v-layout>
     
@@ -10,27 +10,13 @@
       <v-flex md12 justify-center>
         <v-card height="100" >
           <v-tabs color="wihte" dark slider-color="yellow">
-            <v-tab v-for="(type, i) in types" :key="i" ripple>
-              {{type.name}}
+            <v-tab v-for="(type, i) in types" :key="i" ripple v-if="type.chart.visible">
+              {{type.displayText}}
             </v-tab>
-            <v-tab-item :key="1">
+            <v-tab-item v-for="(type, i) in types" :key="i" v-if="type.chart.visible">
               <v-card flat>
                 <v-card-text>
-                  <chart-card width="80%" type="line" />
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item :key="2">
-              <v-card flat>
-                <v-card-text >
-                  <chart-card width="80%" type="line" />
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item :key="3">
-              <v-card flat>
-                <v-card-text>
-                  <chart-card width="80%" type="line" />
+                  <chart-card width="80%" chartType="area" :chartConfig="type.chart" :weeklyMeasurements="weeklyMeasurements[type.attribute]"/>
                 </v-card-text>
               </v-card>
             </v-tab-item>
@@ -44,6 +30,7 @@
 <script>
   import StatisticsCard from '../Cards/statisticsCard'
   import ChartCard from '../Cards/chartCard'
+  import moment from 'moment'
 
   export default {
     name: 'Dashboard',
@@ -53,13 +40,8 @@
     },
     props: {
       currentMeasurements: Object,
-      historicMeasurements: Array,
+      weeklyMeasurements: Object,
       types: Array
-    },
-    data() {
-      return {
-
-      }
     }
   }
 </script>

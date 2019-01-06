@@ -1,5 +1,5 @@
 <template>
-  <v-card width="200" height="100" dark color="secondary">
+  <v-card width="200" height="120" dark color="secondary">
       <v-card-title>
       <span class="title font-weight-light">{{title}}</span>
     </v-card-title>
