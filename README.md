@@ -1,6 +1,14 @@
 # dashboard
 
+## Configurations
+
+Go to config/index.js and change the BASE_API
+```
+BASE_API: "THE_URL_TO_YOUR_API"
+```
+
 ## Project setup
+
 ```
 npm install
 ```
@@ -15,15 +23,6 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
+### Customize vue/cli configuration
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[Configuration Reference](https://cli.vuejs.org/config/)
